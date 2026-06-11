@@ -14,7 +14,7 @@ export enum StorageDriver {
   CLS_HOOKED = 'CLS_HOOKED',
 
   /**
-   * Uses AsyncLocalStorage which is available sice node 16
+   * Uses AsyncLocalStorage which is available since node 16
    */
   ASYNC_LOCAL_STORAGE = 'ASYNC_LOCAL_STORAGE',
 }
