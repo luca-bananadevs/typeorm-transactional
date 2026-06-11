@@ -6,6 +6,25 @@ on:
   pull_request:
 
 jobs:
+  changeset:
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Require a changeset when src/ changes
+        # `changeset status` ignores empty changesets, so check the diff directly:
+        # PRs touching src/ must add a .changeset/*.md entry (empty ones count).
+        run: |
+          base="origin/${{ github.base_ref }}"
+          changed=$(git diff --name-only "$base"...HEAD)
+          if echo "$changed" | grep -q '^src/' && ! echo "$changed" | grep -Eq '^\.changeset/.*\.md$'; then
+            echo "::error::This PR changes src/ but adds no changeset. Run 'npx changeset' (or 'npx changeset add --empty' for no-release changes)."
+            exit 1
+          fi
+          echo "Changeset check passed."
+
   lint:
     runs-on: ubuntu-latest
     steps:
