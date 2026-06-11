@@ -1,5 +1,9 @@
 
 # Typeorm Transactional
+
+> [!IMPORTANT]
+> **This is a maintained fork of [Aliheym/typeorm-transactional](https://github.com/Aliheym/typeorm-transactional)**, which has been inactive since December 2023. This fork fixes critical correctness bugs — most notably transactional-context corruption under concurrent async flows in the AsyncLocalStorage driver, commit/rollback hooks running outside the transactional context, and `NESTED` propagation not using savepoints. See the [upstream issue map](https://github.com/luca-bananadevs/typeorm-transactional/issues/1) for what is being absorbed from upstream issues, PRs, and other forks, and the milestones for the roadmap. Not yet published to npm.
+
 [![npm version](http://img.shields.io/npm/v/typeorm-transactional.svg?style=flat)](https://npmjs.org/package/typeorm-transactional "View this project on npm")
 
 ## It's a fork of [typeorm-transactional-cls-hooked](https://github.com/odavid/typeorm-transactional-cls-hooked) for new versions of TypeORM.
